@@ -8,9 +8,9 @@ import pl.sda.library.domain.author.Author;
 import pl.sda.library.domain.author.AuthorService;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
-
-import static pl.sda.library.config.dev.AuthorMockData.*;
 
 @Component
 @RequiredArgsConstructor
@@ -19,17 +19,23 @@ class MockDataInitializer {
 
     @Value("${authors.mock.count}")
     private short count;
+
     private final AuthorService service;
+    private final AuthorMockData mockData;
+
     private final Random random = new Random();
 
     @PostConstruct
     void initializeAuthors() {
+        List<String> names = mockData.getNames();
+        List<String> lastNames = mockData.getLastNames();
+        List<LocalDate> dates = mockData.getDates();
+
         for (int i = 0; i < count; i++) {
-            Author author = new Author(
-                    NAMES.get(random.nextInt(NAMES.size())),
-                    LAST_NAMES.get(random.nextInt(LAST_NAMES.size())),
-                    DATES.get(random.nextInt(DATES.size())));
-            service.add(author);
+            service.add(new Author(
+                    names.get(random.nextInt(names.size())),
+                    lastNames.get(random.nextInt(lastNames.size())),
+                    dates.get(random.nextInt(dates.size()))));
         }
     }
 
