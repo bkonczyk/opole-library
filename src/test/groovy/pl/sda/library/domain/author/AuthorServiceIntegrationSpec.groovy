@@ -26,12 +26,9 @@ class AuthorServiceIntegrationSpec extends Specification {
         result != null
         result.size() == 1
         with(result.first()) {
-
-            id != null
             name == author.name
             lastName == author.lastName
             birthDate == author.birthDate
-            books == []
         }
     }
 }

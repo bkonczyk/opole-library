@@ -16,4 +16,8 @@ interface AuthorMapper {
             @Mapping(target = "books", ignore = true)
     })
     Author toAuthor(AuthorCreateRequest request);
+
+    AuthorListView toAuthorListView(Author author);
+
+    AuthorSingleView toAuthorSingleView(Author author);
 }

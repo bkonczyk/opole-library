@@ -20,4 +20,31 @@ class AuthorMapperSpec extends Specification {
         result.birthDate == request.birthDate
         result.books == []
     }
+
+    def 'should map Author to AuthorListView'() {
+        given:
+        def author = new Author(1L, "Zamalo", "Pracujecie", LocalDate.MIN, [])
+
+        when:
+        def result = AuthorMapper.MAPPER.toAuthorListView(author)
+
+        then:
+        result.name == author.name
+        result.lastName == author.lastName
+        result.birthDate == author.birthDate
+    }
+
+    def 'should map Author to AuthorSingleView'() {
+        given:
+        def author = new Author(1L, "Zamalo", "Pracujecie", LocalDate.MIN, [])
+
+        when:
+        def result = AuthorMapper.MAPPER.toAuthorSingleView(author)
+
+        then:
+        result.name == author.name
+        result.lastName == author.lastName
+        result.birthDate == author.birthDate
+        result.books == author.books
+    }
 }
