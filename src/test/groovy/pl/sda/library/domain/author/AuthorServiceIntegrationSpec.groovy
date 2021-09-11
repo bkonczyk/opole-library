@@ -14,7 +14,7 @@ class AuthorServiceIntegrationSpec extends Specification {
 
     def 'should add and find authors'() {
         given:
-        def author = new Author("Andrzej", "Rutkowski", LocalDate.of(1960, 1, 1))
+        def author = new AuthorCreateRequest("Andrzej", "Rutkowski", LocalDate.of(1960, 1, 1))
 
         when:
         service.add(author)

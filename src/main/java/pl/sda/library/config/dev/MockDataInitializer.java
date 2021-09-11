@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.sda.library.domain.author.Author;
+import pl.sda.library.domain.author.AuthorCreateRequest;
 import pl.sda.library.domain.author.AuthorService;
 
 import javax.annotation.PostConstruct;
@@ -32,7 +33,7 @@ class MockDataInitializer {
         List<LocalDate> dates = mockData.getDates();
 
         for (int i = 0; i < count; i++) {
-            service.add(new Author(
+            service.add(new AuthorCreateRequest(
                     names.get(random.nextInt(names.size())),
                     lastNames.get(random.nextInt(lastNames.size())),
                     dates.get(random.nextInt(dates.size()))));

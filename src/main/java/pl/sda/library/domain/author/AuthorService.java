@@ -12,10 +12,7 @@ public class AuthorService {
     private final AuthorRepository repository;
 
     public void add(AuthorCreateRequest request) {
-
-    }
-
-    public void add(Author author) {
+        Author author = AuthorMapper.MAPPER.toAuthor(request);
         repository.save(author);
     }
 
